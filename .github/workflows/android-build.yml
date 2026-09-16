@@ -1,4 +1,4 @@
-name: Copy Vector Icon Fonts
+- name: Copy Vector Icon Fonts
         run: |
           mkdir -p android/app/src/main/assets/fonts
           cp node_modules/react-native-vector-icons/Fonts/*.ttf android/app/src/main/assets/fonts/ || true
