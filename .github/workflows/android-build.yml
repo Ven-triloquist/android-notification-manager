@@ -1,3 +1,8 @@
+name: Copy Vector Icon Fonts
+        run: |
+          mkdir -p android/app/src/main/assets/fonts
+          cp node_modules/react-native-vector-icons/Fonts/*.ttf android/app/src/main/assets/fonts/ || true
+
 name: Build Android APK
 
 on:
@@ -40,5 +45,5 @@ jobs:
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-release
+          name: BuzzKill
           path: android/app/build/outputs/apk/**/*.apk
