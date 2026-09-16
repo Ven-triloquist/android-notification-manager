@@ -27,11 +27,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Remove hardcoded Gradle Java home
+        run: |
+          sed -i '/org.gradle.java.home/d' android/gradle.properties || true
+
       - name: Build Android APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleRelease -Porg.gradle.java.home="$JAVA_HOME" --no-daemon
+          ./gradlew assembleRelease --no-daemon
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
