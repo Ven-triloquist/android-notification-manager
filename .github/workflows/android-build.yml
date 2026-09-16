@@ -2,8 +2,8 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch: # Allows manual trigger from GitHub UI
+    branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -25,13 +25,13 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build Android APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleRelease --no-daemon
+          ./gradlew assembleRelease -Porg.gradle.java.home="$JAVA_HOME" --no-daemon
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
